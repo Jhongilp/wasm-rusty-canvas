@@ -2,10 +2,10 @@ mod utils;
 
 use wasm_bindgen::prelude::*;
 
-#[wasm_bindgen(start)]
-pub fn run() {
-    using_web_sys();
-}
+// #[wasm_bindgen(start)]
+// pub fn run() {
+//     using_web_sys();
+// }
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -15,33 +15,29 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
 extern {
-    fn alert(s: &str);
+    // fn alert(s: &str);
 
-    #[wasm_bindgen(js_namespace = console)]
-    fn log(s: &str);
+    // #[wasm_bindgen(js_namespace = console)]
+    // fn log(s: &str);
 }
 
-#[wasm_bindgen]
-pub fn greet(name: &str) {
-    alert(&format!("Hello, {}", name));
-    log("console hello");
-}
+// #[wasm_bindgen]
+// pub fn greet(name: &str) {
+//     alert(&format!("Hello, {}", name));
+//     log("console hello");
+// }
 
-pub fn add(a: u32, b: u32) -> u32 {
-    a + b
-}
+// fn using_web_sys() {
+//     use web_sys::console;
 
-fn using_web_sys() {
-    use web_sys::console;
+//     console::log_1(&"Hello using web-sys".into());
+//     let result = add(4, 8);
 
-    console::log_1(&"Hello using web-sys".into());
-    let result = add(4, 8);
-
-    let js: JsValue = 4.into();
-    // let js: JsValue = 4.into();
-    console::log_2(&"Logging arbitrary values looks like".into(), &result.into());
-    // console::log_2(&"Logging arbitrary values looks like".into(), &js);
-}
+//     let js: JsValue = 4.into();
+//     // let js: JsValue = 4.into();
+//     console::log_2(&"Logging arbitrary values looks like".into(), &result.into());
+//     // console::log_2(&"Logging arbitrary values looks like".into(), &js);
+// }
 
 #[wasm_bindgen]
 struct Rectangle {
@@ -65,6 +61,11 @@ impl Rectangle {
 
     pub fn height(&self) -> u32 {
         self.height
+    }
+
+    // pub fn move_right(&mut self, x: u32) {
+    pub fn move_right(&mut self) {
+        self.width = self.width + 10;
     }
 }
 
