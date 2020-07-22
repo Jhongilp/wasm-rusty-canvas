@@ -54,9 +54,9 @@ impl Rectangle {
         Rectangle {width, height, pos_x, pos_y}
     }
 
-    pub fn new_default() -> Rectangle {
-        Rectangle {width: 100, height: 100, pos_x: 0, pos_y: 0}
-    }
+    // pub fn new_default() -> Rectangle {
+    //     Rectangle {width: 100, height: 100, pos_x: 0, pos_y: 0}
+    // }
 
     pub fn width(&self) -> u32 {
         self.width
@@ -64,6 +64,14 @@ impl Rectangle {
 
     pub fn height(&self) -> u32 {
         self.height
+    }
+    
+    pub fn pos_x(&self) -> i32 {
+        self.pos_x
+    }
+    
+    pub fn pos_y(&self) -> i32 {
+        self.pos_y
     }
 
     // pub fn move_right(&mut self, x: u32) {
@@ -88,7 +96,9 @@ impl Game {
     pub fn paint_grid(&mut self, colums: u32) {
         // let w = 65000;
         let w = 4294967295;
-        let h = 20;
+        // let h = 511; //  00000000000000000000000111111111 -> [255, 1, 0, 0]
+        // let h = 1023; // 00000000000000000000001111111111 -> [255, 3, 0, 0]
+        let h = 2047; //    00000000000000000000011111111111 -> [255, 7, 0, 0]
         let mut pos_x: i32 = 40;
         let pos_y = 100;
         for i in 0..colums {
@@ -109,6 +119,4 @@ impl Game {
     pub fn get_rect_pos_x(&self, index: usize) -> i32 {
         self.cells[index].pos_x
     }
-
-    
 }
